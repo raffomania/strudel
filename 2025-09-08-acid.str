@@ -1,0 +1,24 @@
+// https://www.youtube.com/watch?v=HkgV_-nJOuE&t=1s
+
+setCps(140/60/4)
+
+$: s("sbd!4")
+  .distort("<3 3.5 4 5>/32:.3")
+  .sometimesBy(.05, x=>x.ply("<2 4>"))
+  .duckorbit("2:3:4").duckattack(.2).duckdepth(.8)
+  ._scope()
+
+$: n(irand("3!3 <6!3 10>").rib("<64!3 28>/8",4).sub("<7!3 6>/4").seg(16)).scale("f:minor")
+  .s("sawtooth").lpf(200).lpenv(saw.range(.1,4).slow(32)).ftype("24db").lpq(12)
+  .orbit(2)
+  .distort("2.2:.3")
+  .sometimesBy(.1, x=>x.lpq(18))
+  ._pianoroll()
+  ._spectrum()
+
+$: s("supersaw").detune(1).rel(3).fmh("<2 2.02 2.04 2.07>")
+  .beat(2, 32).slow(4).fm(2).orbit(3)
+  .delay(.8).delaysync(.5).delayfeedback(.85).room(1).roomsize(6)
+
+$: s("pulse").orbit(4).seg("<12 8 12 16!6>/4").dec(.1).fm(time).fmh(time)
+  ._spiral()
