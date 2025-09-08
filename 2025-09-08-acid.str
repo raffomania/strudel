@@ -1,3 +1,4 @@
+// inspired by
 // https://www.youtube.com/watch?v=HkgV_-nJOuE&t=1s
 
 setCps(140/60/4)
