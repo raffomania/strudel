@@ -1,0 +1,15 @@
+setCps(60/60/4)
+
+$: n("<[0 2 <[4 5] [6 7]>] [0 4 3] [0 3 1]>")
+  .scale("e:minor").sound("piano").lpf(600)
+
+$: n("<[0] [-2] [-4] [1 2]>")
+  .scale("e:minor")
+  .scaleTranspose("<0 -7 -2>/4")
+  .scaleTranspose("-7")
+  .decay(rand.range(0.5,2))
+  .attack(rand.range(0, .2))
+  .delay(.6).delaytime(2/3).delayfeedback(.7)
+  .room(.8).rsize(3)
+  .lpf(2800)
+  .sound("supersaw").gain(saw.range(.3, .8).slow(2))
