@@ -1,0 +1,37 @@
+$: n(saw.rev().range(0, 14)
+     .add(saw.range(0, 7*2).slow(4))
+     .add(rand.range(-2,0))
+     .seg("16 8 4")
+     .sometimes(ply(2))
+     .rib(0, 8)
+    )
+  .scale("<c:major>/8").sound("pulse")
+  .gain(sine.range(.6,.8).fast(2))
+  .lpenv(3)
+  .lpf(200)
+
+$: s("sbd*4").gain(.5)
+
+// $: s("[- hh]*8").gain("[.2 .4]*4")
+
+// $: s("[-@7 clap]").sometimes(ply(2)).distort("2:.3")
+
+$: n("<[[0 -]!4] [[0 -]*2!2 [0 -]!2] [[0 -]!4] [[0 -]!6 7 8]>")
+  .scale("c:major")
+  .scaleTranspose("-7")
+  .s("supersaw")
+  .distort("2:.6")
+  .lpf(800)
+  .lpenv(8)
+
+$: n("<<1 4> [3@3 <4>] [<8 0> ~@16] ~>")
+.scale("C:major").sound("sawtooth")
+.room(2)
+.delay(0.3)
+.gain(.5)
+.lpf("<800 1300 1800>")
+
+$: s("[numbers:1] <~> <~ numbers:3> numbers:4")
+.pan("0 0.3 0.5 1").rev()
+
+$: s("<hh*2 hh> <hh*2 [hh*4, <rim sd>]> hh hh")
