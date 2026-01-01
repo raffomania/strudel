@@ -1,0 +1,41 @@
+// After https://www.youtube.com/watch?v=vAPX6g2eHgA
+
+setCpm(148/4)
+
+$: note("{e2 f2 e2 e2, g#3 a3 <f4!3 g4 a4>}")
+  .ply("<2!6 4!2>")
+  .sound("supersaw")
+  .sustain(.3).release(.1)
+  .distort(saw.range(.4, .9).slow(64))
+  .lpf(sine.range(200, 1000))
+  .lpq(saw.range(1, 8).slow(32))
+  .lpenv(saw.range(0.1, 4).slow(16))
+  .lpdecay(saw.range(.4, .05).slow(64))
+  .delay(saw.range(0, .4).slow(128))
+  .room(saw.range(0, .9).slow(128))
+  .postgain(.8)
+
+$: s("bd:3!4").struct("<~!15 [x x x x] ~!14 [x*4]!2>")
+  .distort(.2).postgain(.6)._scope()
+$: s("sbd!4").distort(.8).lpf(300)._scope()
+$: s("<~!16 [white!8]!64>").decay(.07).lpf(2000)
+  .delay(saw.range(0, .2).slow(4))
+  .sometimesBy(".3", x=>x.s("hh | oh"))
+  .jux(sometimesBy(".2", ply(2)))
+  .velocity(saw.range(.9, 1.9).slow(16))
+
+$: s("~ ~ lt ~ lt ~ ~ ~")
+  .lpf(1000)
+  .pan(.6)
+  .postgain(.8)
+
+$: s("<~!16 mt!48>").struct("~ ~ ~ mt ~ ~ mt [~ mt]")
+  .lpf(2500)
+  .pan(.3)
+  .postgain(.5)
+
+$: s("<~!32 ht!32>").struct("x x ~ ~ x ~ [x x] ~")
+  .sometimesBy(saw.range(0, 1).slow(16), x=>x.delay(.3))
+  .hpf(600)
+  .pan(.7)
+
