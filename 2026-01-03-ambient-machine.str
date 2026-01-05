@@ -1,0 +1,26 @@
+setCpm(60/4)
+
+$: s("tr808_bd*4").n("3")
+  .sometimesBy("0.05", ply(2))
+  .lpf(cosine.range(800, 0).slow(sine.range(32, 64).slow(32)))
+
+$: s("supersaw").struct("x ~ [x x] ~")
+  .note(saw.range(-8, -16).slow(8).sometimesBy(".2", sub(3)))
+  .sometimes(ply(2))
+  .sometimesBy(".1", ply(2))
+  .scale("F:minor")
+  .lpf(sine.range(200, 800).slow(16))
+  .lpq(1)
+  .lpdecay(.3).lpenv("<4 2 1 0 -1 -2 -4>/4")
+  .room(.5)
+  .delay(.5)
+  .roomsize(7)
+  .gain(.3)
+
+$: s("[sh sh]*8").velocity("[1 .7]*8").n("<0 1>").bank("tr808")
+  .sometimesBy(".1", x=>x.s("hh|rim"))
+  .sometimesBy(".1", ply(2))
+  .gain(.05).pan(sine.slow(2)).sometimes(jux(ply(2)))
+  .room(.3)
+  .roomsize(4)
+
